@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - /var/www/db:/var/lib/postgresql
+    environment:
+      - POSTGRES_USER=123
+      - POSTGRES_DB=123
+      - POSTGRES_PASSWORD=123
+
+  app:
+    image: nextcloud
+    ports:
+      - 80:80
+    links:
+      - db
+    volumes:
+      - /var/www/html:/var/www/html
+    restart: always
+    environment:
+      - NEXTCLOUD_ADMIN_USER=cathowlet
+      - NEXTCLOUD_ADMIN_PASSWORD=moments9021
+
+
